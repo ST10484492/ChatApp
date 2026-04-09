@@ -10,4 +10,16 @@ package com.mycompany.chatapp;
  */
 class UserDetails {
     
+    
+    private String firstName, lastName, userName, password, phoneNumber;
+
+    public UserDetails(String firstName, String lastName, String userName, String password, String phoneNumber) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.userName = userName;
+        this.password = password;
+        this.phoneNumber = phoneNumber;
+    }
+    
+    
 }

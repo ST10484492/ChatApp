@@ -46,7 +46,9 @@ class Login {
             UserDetails details = new UserDetails(firstName, lastName, userName, password, phoneNumber);
             return "Successfully registered:)";
         }else{
-            
+            System.out.println("Registration unsuccessful:(");
+            System.exit(0);
+            return null;
         }
     }
 }
