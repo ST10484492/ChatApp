@@ -36,7 +36,7 @@ public class ChatApp {
         phoneNumber = input.nextLine();
         
         //if-else username is valid
-        if(Login.checkUsername(userName)){
+        if(login.checkUsername(userName)){
             System.out.println("Username successfully captured.");
         }else{
             System.out.println("Username is not correctly formatted; "
@@ -45,7 +45,7 @@ public class ChatApp {
         }
         
         //if-else password is valid
-        if(Login.checkPassword(passWord)){
+        if(login.checkPassword(passWord)){
             System.out.println("Password successfully captured.");
         }else{
             System.out.println("Password is not correctly formatted; "
@@ -54,12 +54,14 @@ public class ChatApp {
         }
         
         //if-else phonenumber is valid
-        if(Login.checkPhoneNumber(phoneNumber)){
+        if(login.checkPhoneNumber(phoneNumber)){
             System.out.println("Cell phone number is successfully captured.");           
         }else{
             System.out.println("Cell phone number incorrectly formatted or "
                     + "does not contain international code");
         }
+        
+        System.out.println(login.registerUser(userName, passWord, phoneNumber, userName, userName));
         
         //Login class method??
         System.out.println("======LOGIN======");
@@ -69,7 +71,7 @@ public class ChatApp {
         System.out.println("Enter your password: ");
         loginPass = input.nextLine();
         
-        if(Login.loginUser(userName, passWord, loginUser, loginPass)){
+        if(login.loginUser(userName, passWord, loginUser, loginPass)){
             System.out.println("Welcome " + userName + ", Great To See You Again");
         }else{
             System.out.println("Username is incorect, please try again");

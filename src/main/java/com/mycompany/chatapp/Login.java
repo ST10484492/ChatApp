@@ -10,12 +10,12 @@ package com.mycompany.chatapp;
  */
 class Login {
      //conditions for username
-    public static boolean checkUsername(String userName){
+    public  boolean checkUsername(String userName){
         return userName.contains("_")&& userName.length()<=5;
     }
     
     //conditions for password
-    public static boolean checkPassword(String passWord){
+    public  boolean checkPassword(String passWord){
         
         String pattern = "(?=.*[A-Z])"//atleast one uppercasee
                        + "(?=.*\\d)" //atleast one number
@@ -26,14 +26,14 @@ class Login {
     }
     
     //conditions for phone number
-    public static boolean checkPhoneNumber(String phoneNumber){
+    public  boolean checkPhoneNumber(String phoneNumber){
         String pattern = "^(\\+27|0)[6-8][0-9]{8}";//user should enter +27 and 9number
         
         return phoneNumber.matches(pattern);
     }
     
     //has stored all the users input
-    public static boolean loginUser(String storedUser, String storedPass, String loginUser, String loginPass){
+    public  boolean loginUser(String storedUser, String storedPass, String loginUser, String loginPass){
         return loginUser.equals(storedUser) && loginPass.equals(storedPass);
     }
     
