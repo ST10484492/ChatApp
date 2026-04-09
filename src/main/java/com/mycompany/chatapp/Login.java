@@ -36,4 +36,17 @@ class Login {
     public static boolean loginUser(String storedUser, String storedPass, String loginUser, String loginPass){
         return loginUser.equals(storedUser) && loginPass.equals(storedPass);
     }
+    
+    
+    public String registerUser(String userName, String password, String phoneNumber, String firstName, String lastName){
+        
+        
+        if(checkUsername(userName) && checkPhoneNumber(phoneNumber)){
+            
+            UserDetails details = new UserDetails(firstName, lastName, userName, password, phoneNumber);
+            return "Successfully registered:)";
+        }else{
+            
+        }
+    }
 }
