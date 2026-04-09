@@ -22,6 +22,9 @@ public class ChatApp {
         String loginUser;
         String loginPass;
         
+        
+        //object for login class
+        Login login = new Login();
         //user input
         System.out.println("Enter username: ");
         userName = input.nextLine();
