@@ -16,16 +16,24 @@ public class ChatApp {
        Scanner input = new Scanner(System.in);
         
         //declaring
+        String firstName;
+        String lastName;
         String userName;
         String passWord;
         String phoneNumber;
         String loginUser;
         String loginPass;
-        
-        
+    
         //object for login class
         Login login = new Login();
+        
         //user input
+        System.out.println("Enter your first name: ");
+        firstName = input.nextLine();
+        
+        System.out.println("Enter your last name: ");
+        lastName = input.nextLine();
+        
         System.out.println("Enter username: ");
         userName = input.nextLine();
         
@@ -61,7 +69,7 @@ public class ChatApp {
                     + "does not contain international code");
         }
         
-        System.out.println(login.registerUser(userName, passWord, phoneNumber, userName, userName));
+        login.registerUser(userName, passWord, phoneNumber, userName, userName);
         
         //Login class method??
         System.out.println("======LOGIN======");
@@ -71,11 +79,9 @@ public class ChatApp {
         System.out.println("Enter your password: ");
         loginPass = input.nextLine();
         
-        if(login.loginUser(userName, passWord, loginUser, loginPass)){
-            System.out.println("Welcome " + userName + ", Great To See You Again");
-        }else{
-            System.out.println("Username is incorect, please try again");
-        }
-    
+        boolean success = login.loginUser(loginUser, loginPass);
+        
+        //display message
+        System.out.println(login.returnLoginStatus(success));
     }
 }
