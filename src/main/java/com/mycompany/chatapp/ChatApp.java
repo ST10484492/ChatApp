@@ -14,7 +14,7 @@ public class ChatApp {
 
     public static void main(String[] args) {
        Scanner input = new Scanner(System.in);
-        
+       
         //declaring
         String firstName;
         String lastName;
@@ -23,15 +23,13 @@ public class ChatApp {
         String phoneNumber;
         String loginUser;
         String loginPass;
-    
-        //object for login class
-        Login login = new Login();
         
+        Login Login = new Login();
         //user input
-        System.out.println("Enter your first name: ");
+        System.out.println("Enter first name: ");
         firstName = input.nextLine();
         
-        System.out.println("Enter your last name: ");
+        System.out.println("Enter last name: ");
         lastName = input.nextLine();
         
         System.out.println("Enter username: ");
@@ -44,7 +42,7 @@ public class ChatApp {
         phoneNumber = input.nextLine();
         
         //if-else username is valid
-        if(login.checkUsername(userName)){
+        if(Login.checkUsername(userName)){
             System.out.println("Username successfully captured.");
         }else{
             System.out.println("Username is not correctly formatted; "
@@ -53,7 +51,7 @@ public class ChatApp {
         }
         
         //if-else password is valid
-        if(login.checkPassword(passWord)){
+        if(Login.checkPassword(passWord)){
             System.out.println("Password successfully captured.");
         }else{
             System.out.println("Password is not correctly formatted; "
@@ -62,14 +60,12 @@ public class ChatApp {
         }
         
         //if-else phonenumber is valid
-        if(login.checkPhoneNumber(phoneNumber)){
+        if(Login.checkPhoneNumber(phoneNumber)){
             System.out.println("Cell phone number is successfully captured.");           
         }else{
             System.out.println("Cell phone number incorrectly formatted or "
                     + "does not contain international code");
         }
-        
-        login.registerUser(userName, passWord, phoneNumber, userName, userName);
         
         //Login class method??
         System.out.println("======LOGIN======");
@@ -79,9 +75,10 @@ public class ChatApp {
         System.out.println("Enter your password: ");
         loginPass = input.nextLine();
         
-        boolean success = login.loginUser(loginUser, loginPass);
-        
-        //display message
-        System.out.println(login.returnLoginStatus(success));
+        if(Login.loginUser(userName, passWord, loginUser, loginPass)){
+            System.out.println("Welcome " + firstName + " " + lastName + ", Great To See You Again");
+        }else{
+            System.out.println("Username is incorect, please try again");
+        }
     }
 }

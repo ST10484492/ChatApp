@@ -9,19 +9,14 @@ package com.mycompany.chatapp;
  * @author Student
  */
 class Login {
-
-    private String userName;
-    private String passWord;
-    private String firstName;
-    private String lastName;
-    private String phoneNumber;
-     //check username
-    public boolean checkUsername(String userName){
+    
+    //conditions for username
+    public static boolean checkUsername(String userName){
         return userName.contains("_")&& userName.length()<=5;
     }
     
-    //check password
-    public boolean checkPassword(String passWord){
+    //conditions for password
+    public static boolean checkPassword(String passWord){
         
         String pattern = "(?=.*[A-Z])"//atleast one uppercasee
                        + "(?=.*\\d)" //atleast one number
@@ -31,53 +26,19 @@ class Login {
         return passWord.matches(pattern); //this will return on main class
     }
     
-    //check phone number
-    public boolean checkPhoneNumber(String phoneNumber){
-        String pattern = "^(\\+27[0-9]){9}|0[0-9]{8}";//user should enter +27 and 9number
+    //conditions for phone number
+    public static boolean checkPhoneNumber(String phoneNumber){
+        String pattern = "^(\\+27|0)"
+                       + "[6-8]"
+                       + "[0-9]"
+                       + "{8}";//user should enter +27 and 9numbers
         
         return phoneNumber.matches(pattern);
     }
+    
+    //has stored all the users input
+    public static boolean loginUser(String storedUser, String storedPass, String loginUser, String loginPass){
+        return loginUser.equals(storedUser) && loginPass.equals(storedPass);
+    }
 
-    //register user
-    public boolean registerUser(String userName, String passWord, String phoneNumber, String firstName, String lastName){
-     if(checkUsername(userName) && checkPhoneNumber(phoneNumber)){
-         System.out.println("Invalid username.");
-            return false;
-        }
-     
-     if(checkPassword(passWord)){
-         System.out.println("Invalid password.");
-         return false;
-     }
-     
-     if(checkPhoneNumber(phoneNumber)){
-         System.out.println("Phone number is not correctly formatted");
-         return false;
-     }
-     
-     //storing the details
-     this.userName = userName;
-     this.passWord = passWord;
-     this.firstName = firstName;
-     this.lastName = lastName;
-     this.phoneNumber = phoneNumber;
-     
-        System.out.println("User successfully registered");
-        return true;
     }
-    
-    public boolean loginUser(String userName, String passWord){
-        return this.userName != null &&
-                this.userName.equals(userName) && 
-                this.passWord.equals(passWord);
-}
-    
-    //return login message
-    public String returnLoginStatus(boolean loginSuccess){
-        if(loginSuccess){
-            return "Welcome " + firstName + "," + lastName + " it is great to see you again.";
-        }else{
-            return "Username or password incorrect, please try again";
-        }
-    }
-}
