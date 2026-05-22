@@ -3,7 +3,7 @@
  */
 
 package com.mycompany.chatapp;
-
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -25,6 +25,8 @@ public class ChatApp {
         String loginPass;
         
         Login Login = new Login();
+        
+        System.out.println("======REGISTER======");
         //user input
         System.out.println("Enter first name: ");
         firstName = input.nextLine();
@@ -80,5 +82,7 @@ public class ChatApp {
         }else{
             System.out.println("Username is incorect, please try again");
         }
+        
+        
     }
 }
