@@ -40,5 +40,4 @@ class Login {
     public static boolean loginUser(String storedUser, String storedPass, String loginUser, String loginPass){
         return loginUser.equals(storedUser) && loginPass.equals(storedPass);
     }
-
     }

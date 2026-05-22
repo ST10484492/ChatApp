@@ -11,7 +11,7 @@ import java.util.Random;
  * @author Student
  */
 class Message {
-    private String messageID;
+   private String messageID;
    private int messageNumber;
    private String recipient;
    private String message;
@@ -62,13 +62,22 @@ class Message {
        String[] words = message.split(" ");
        
        String firstWord = words[0];
+       
        String lastWord = words[words.length - 1];
        
-       messageHash = messageID.substring(0,2) + ":" + messageNumber + ":" + firstWord + lastWord;
+       messageHash = messageID.substring(0,2) + ": " + messageNumber + ": " + firstWord + lastWord;
        
        messageHash = messageHash.toUpperCase();
        
        return messageHash;
+   }
+   
+   public String sentMessage(){
+       if(message.length()>250){
+           return "Please enter a message of less than 250 characters.";
+       }else{
+           return "Message successfully sent";
+       }
    }
    
    //printing message details
@@ -85,6 +94,5 @@ class Message {
    //storing message placeholder
    public void storeMessage(){
        System.out.println("Message successfully stored.");
-   }
-    
+   }    
 }

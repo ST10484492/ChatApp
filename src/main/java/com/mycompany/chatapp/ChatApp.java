@@ -84,9 +84,9 @@ public class ChatApp {
         loginPass = input.nextLine();
         
         if(Login.loginUser(userName, passWord, loginUser, loginPass)){
-            System.out.println("================================================");
+            System.out.print("================================================");
             System.out.println("\nWelcome To QuickChat");
-            System.out.println("================================================");
+            System.out.print("================================================");
         }else{
             System.out.println("Username is incorect, please try again");
         }  
@@ -94,8 +94,8 @@ public class ChatApp {
         //application runs till user quits
         while(option != 3){
             
-            System.out.println("======MENU======");
-            System.out.println("\nChoose an option: ");
+            System.out.println("\n======MENU======");
+            System.out.println("Choose an option: ");
             System.out.println("1) Send Messages");
             System.out.println("2) Show Recently sent messages");
             System.out.println("3) Quit");
@@ -126,21 +126,19 @@ public class ChatApp {
                     
                     System.out.println(message.checkRecipientCell());
                     
-                    System.out.println(message.sentMessage());
-                    
-                    System.out.println("\nChoose an option: ");
+                    System.out.println("\nChoose an option (what to do with message): ");
                     System.out.println("1) Send Message");
-                    System.out.println("2) Disregard Message");
+                    System.out.println("2) Delete Message");
                     System.out.println("3) Store Message");
+                    System.out.println("Option: ");
+                    option = input.nextInt();
                     messageOption = input.nextInt();
-                    input.nextLine();
-                    
+ 
                     //message option 1, if chosen
                     if(messageOption == 1){
-                        System.out.println("Message successfully sent.");
-                        
                         System.out.println(message.printMessage());
                         
+                        System.out.println("Message successfully sent.");    
                     }
                     //message option 2, delete message, if chosen
                     else if(messageOption == 2){
