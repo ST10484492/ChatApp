@@ -23,9 +23,12 @@ public class ChatApp {
         String phoneNumber;
         String loginUser;
         String loginPass;
+        int option = 0;
         int numberOfMessages;
         String recipient;
         String messageText;
+        int messageOption;
+        int delete;
         
         Login Login = new Login();
         
@@ -86,9 +89,7 @@ public class ChatApp {
             System.out.println("================================================");
         }else{
             System.out.println("Username is incorect, please try again");
-        }
-        
-        int option = 0;
+        }  
         
         //application runs till user quits
         while(option != 3){
@@ -103,20 +104,74 @@ public class ChatApp {
             option = input.nextInt();
             input.nextLine();
             
+            //for the send messages option
             if(option == 1){
+                
                 System.out.println("How many messages would you like to send?");
                 numberOfMessages = input.nextInt();
+                input.nextLine();
                 
                 for(int i = 1; i<= numberOfMessages; i++){
+                    
                     System.out.println("\nMESSAGE " + i);
+                    
                     System.out.println("Recipient Number: ");
                     recipient = input.nextLine();
                     
                     System.out.println("Enter Message: ");
                     messageText = input.nextLine();
                     
+                    //new class
                     Message message = new Message(i, recipient, messageText);
+                    
+                    System.out.println(message.checkRecipientCell());
+                    
+                    System.out.println(message.sentMessage());
+                    
+                    System.out.println("\nChoose an option: ");
+                    System.out.println("1) Send Message");
+                    System.out.println("2) Disregard Message");
+                    System.out.println("3) Store Message");
+                    messageOption = input.nextInt();
+                    input.nextLine();
+                    
+                    //message option 1, if chosen
+                    if(messageOption == 1){
+                        System.out.println("Message successfully sent.");
+                        
+                        System.out.println(message.printMessage());
+                        
+                    }
+                    //message option 2, delete message, if chosen
+                    else if(messageOption == 2){
+                        
+                        System.out.println("Press 0 to delete message");
+                        delete = input.nextInt();
+                        input.nextLine();
+                        
+                        if(delete == 0){
+                            System.out.println("Message deleted");
+                        }
+                    }
+                    //message option 3, to store message, if chosen
+                    else if(messageOption == 3){
+                        message.storeMessage();
+                    }  
                 }
+                
+                System.out.println("\nTotal Messages Sent: " + Message.returnTotalMessages());    
+            }
+            
+            else if(option == 2){
+                System.out.println("Coming Soon.");
+            }
+            
+            else if(option == 3){
+                System.out.println("Goodbye");
+            }
+            
+            else{
+                System.out.println("Invalid Option");
             }
         }
     }
