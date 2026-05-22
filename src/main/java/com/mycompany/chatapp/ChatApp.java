@@ -23,6 +23,9 @@ public class ChatApp {
         String phoneNumber;
         String loginUser;
         String loginPass;
+        int numberOfMessages;
+        String recipient;
+        String messageText;
         
         Login Login = new Login();
         
@@ -78,11 +81,43 @@ public class ChatApp {
         loginPass = input.nextLine();
         
         if(Login.loginUser(userName, passWord, loginUser, loginPass)){
-            System.out.println("Welcome " + firstName + " " + lastName + ", Great To See You Again");
+            System.out.println("================================================");
+            System.out.println("\nWelcome To QuickChat");
+            System.out.println("================================================");
         }else{
             System.out.println("Username is incorect, please try again");
         }
         
+        int option = 0;
         
+        //application runs till user quits
+        while(option != 3){
+            
+            System.out.println("======MENU======");
+            System.out.println("\nChoose an option: ");
+            System.out.println("1) Send Messages");
+            System.out.println("2) Show Recently sent messages");
+            System.out.println("3) Quit");
+            
+            System.out.println("Option: ");
+            option = input.nextInt();
+            input.nextLine();
+            
+            if(option == 1){
+                System.out.println("How many messages would you like to send?");
+                numberOfMessages = input.nextInt();
+                
+                for(int i = 1; i<= numberOfMessages; i++){
+                    System.out.println("\nMESSAGE " + i);
+                    System.out.println("Recipient Number: ");
+                    recipient = input.nextLine();
+                    
+                    System.out.println("Enter Message: ");
+                    messageText = input.nextLine();
+                    
+                    Message message = new Message(i, recipient, messageText);
+                }
+            }
+        }
     }
 }
