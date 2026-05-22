@@ -128,17 +128,16 @@ public class ChatApp {
                     
                     System.out.println("\nChoose an option (what to do with message): ");
                     System.out.println("1) Send Message");
-                    System.out.println("2) Delete Message");
+                    System.out.println("2) Disregard Message");
                     System.out.println("3) Store Message");
-                    System.out.println("Option: ");
-                    option = input.nextInt();
+                    
                     messageOption = input.nextInt();
- 
+                    input.nextLine();
+                    
                     //message option 1, if chosen
                     if(messageOption == 1){
-                        System.out.println(message.printMessage());
+                        System.out.println(message.sentMessage());
                         
-                        System.out.println("Message successfully sent.");    
                     }
                     //message option 2, delete message, if chosen
                     else if(messageOption == 2){
