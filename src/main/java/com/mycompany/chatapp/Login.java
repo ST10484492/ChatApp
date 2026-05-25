@@ -28,7 +28,9 @@ class Login {
     
     //conditions for phone number
     public static boolean checkPhoneNumber(String phoneNumber){
-        String pattern = "^(\\+27(?=.{1,11}$)[0-9]+$";
+        String pattern = "^(\\+27)"
+                       + "[0-9]"//9 digits after +27
+                       + "{9}";//user should enter +27 and 9numbers
         
         return phoneNumber.matches(pattern);
     }

@@ -52,7 +52,7 @@ class Message {
    //checking recipient number
    public String checkRecipientCell(){
        
-       if(recipient.matches("^\\+27[0-9]{9}$")){
+       if(recipient.matches("0") && recipient.length()<= 10){
            return "Cell phone number successfully captured.";
        }else{
            return "Cell phone number incorrectly formatted.";
@@ -75,6 +75,7 @@ class Message {
    }
    
    public String sentMessage(){
+       
        if(message.length()>250){
            return "Please enter a message of less than 250 characters.";
        }else{

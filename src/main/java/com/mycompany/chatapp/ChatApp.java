@@ -138,7 +138,14 @@ public class ChatApp {
                     
                     //message option 1, if chosen
                     if(messageOption == 1){
+                        //displays sent message
                         System.out.println(message.sentMessage());
+                        
+                        //prints message details
+                        System.out.println(message.printMessage());
+                        
+                        //saves message to JSON file
+                        message.storeMessage();
                         
                     }
                     //message option 2, delete message, if chosen
@@ -187,7 +194,7 @@ public class ChatApp {
             }
             
             else{
-                System.out.println("Invalid Option");
+                System.out.println("Invalid Option, please choose 1, 2 or 3");
             }
         }
     }
