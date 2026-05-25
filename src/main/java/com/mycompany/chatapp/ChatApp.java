@@ -5,6 +5,8 @@
 package com.mycompany.chatapp;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.io.File;
+import java.io.FileNotFoundException;
 
 /**
  *
@@ -160,7 +162,24 @@ public class ChatApp {
             }
             
             else if(option == 2){
-                System.out.println("Coming Soon.");
+                try{
+                    //opening the json file
+                    File file = new File("messages.json");
+                    
+                    //reading file
+                    Scanner fileReader = new Scanner(file);
+                    
+                    System.out.println("===STORED MESSAGES===");
+                    
+                    while(fileReader.hasNextLine()){
+                        System.out.println(fileReader.nextLine());
+                    }
+                }
+                
+                //file not found
+                catch(FileNotFoundException e){
+                    System.out.println("No stored messages found");
+                }
             }
             
             else if(option == 3){

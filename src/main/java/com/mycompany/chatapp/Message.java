@@ -5,6 +5,8 @@
 package com.mycompany.chatapp;
 
 import java.util.Random;
+import java.io.FileWriter;
+import java.io.IOException;
 
 /**
  *
@@ -91,8 +93,26 @@ class Message {
        return totalMessages;
    }
    
-   //storing message placeholder
    public void storeMessage(){
-       System.out.println("Message successfully stored.");
-   }    
+       
+       try{
+           
+           //creating a FileWriter object
+           FileWriter writer = new FileWriter("messages.json", true);
+           
+           //message details stored in JSON format
+           writer.write("\n");
+           writer.write("\"MessagesID\":\"" + messageID + "\",\n");
+           writer.write("\"MessagesHash\":\"" + messageHash + "\",\n");
+           writer.write("\"Recipient\":\"" + recipient + "\",\n");
+           writer.write("\"Message\":\"" + message + "\"\n");
+           
+           System.out.println("Message Successfully stored");
+       }
+       //handles the file errors
+       catch(IOException e){
+           System.out.println("Error storing message");
+       }
+   }
+      
 }
