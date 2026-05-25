@@ -50,13 +50,8 @@ class Message {
    }
    
    //checking recipient number
-   public String checkRecipientCell(){
-       
-       if(recipient.matches("0") && recipient.length()<= 10){
-           return "Cell phone number successfully captured.";
-       }else{
-           return "Cell phone number incorrectly formatted.";
-       }
+   public boolean checkRecipientCell(){
+       return recipient.startsWith("+27") && recipient.length()==12;
    }
    
    //creating amessage hash

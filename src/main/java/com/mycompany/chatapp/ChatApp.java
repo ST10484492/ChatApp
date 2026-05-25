@@ -33,6 +33,8 @@ public class ChatApp {
         int delete;
         
         Login Login = new Login();
+        ArrayList<String>sentMessages = new ArrayList<>();
+        ArrayList<String>messageHashes = new ArrayList<>();
         
         System.out.println("======REGISTER======");
         //user input
@@ -48,7 +50,7 @@ public class ChatApp {
         System.out.println("Enter password: ");
         passWord = input.nextLine();
         
-        System.out.println("Enter your phone number: ");
+        System.out.println("Enter your phone number (start with +27): ");
         phoneNumber = input.nextLine();
         
         //if-else username is valid
@@ -99,7 +101,7 @@ public class ChatApp {
             System.out.println("\n======MENU======");
             System.out.println("Choose an option: ");
             System.out.println("1) Send Messages");
-            System.out.println("2) Show Recently sent messages");
+            System.out.println("2) Show Recently Sent Messages");
             System.out.println("3) Quit");
             
             System.out.println("Option: ");
@@ -117,7 +119,7 @@ public class ChatApp {
                     
                     System.out.println("\nMESSAGE " + i);
                     
-                    System.out.println("Recipient Number: ");
+                    System.out.println("Recipient Number(start with +27): ");
                     recipient = input.nextLine();
                     
                     System.out.println("Enter Message: ");
@@ -126,7 +128,12 @@ public class ChatApp {
                     //new class
                     Message message = new Message(i, recipient, messageText);
                     
-                    System.out.println(message.checkRecipientCell());
+                    //recipients number checker??
+                    if(message.checkRecipientCell()){
+                        System.out.println("Cell phone correctly formatted");
+                    } else{
+                        System.out.println("Cell phone incorrectly formatted");
+                    }
                     
                     System.out.println("\nChoose an option (what to do with message): ");
                     System.out.println("1) Send Message");
@@ -143,6 +150,8 @@ public class ChatApp {
                         
                         //prints message details
                         System.out.println(message.printMessage());
+                        sentMessages.add(message.printMessage());
+                        messageHashes.add(message.createMessageHash());
                         
                         //saves message to JSON file
                         message.storeMessage();
@@ -169,24 +178,18 @@ public class ChatApp {
             }
             
             else if(option == 2){
-                try{
-                    //opening the json file
-                    File file = new File("messages.json");
+                if(sentMessages.isEmpty()){
                     
-                    //reading file
-                    Scanner fileReader = new Scanner(file);
+                    System.out.println("No messages sent yet");
+                }
+                else{
+                    System.out.println("===RECENTLY SENT MESSAGES===");
                     
-                    System.out.println("===STORED MESSAGES===");
-                    
-                    while(fileReader.hasNextLine()){
-                        System.out.println(fileReader.nextLine());
+                    //loop through messages
+                    for(int i = 0;i < sentMessages.size();i++){
+                        System.out.println(sentMessages.get(i));
                     }
-                }
-                
-                //file not found
-                catch(FileNotFoundException e){
-                    System.out.println("No stored messages found");
-                }
+                } 
             }
             
             else if(option == 3){
