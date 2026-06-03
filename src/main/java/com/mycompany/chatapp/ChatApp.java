@@ -141,16 +141,15 @@ public class ChatApp {
                     } else{
                         System.out.println("Cell phone incorrectly formatted");
                     }
-                    
+                    //shows after typing messages
                     System.out.println("\nChoose an option (what to do with message): ");
                     System.out.println("1) Send Message");
                     System.out.println("2) Disregard Message");
                     System.out.println("3) Store Message");
-                    
                     messageOption = input.nextInt();
                     input.nextLine();
                     
-                    //message option 1, if chosen
+                    //message option 1,sending the message
                     if(messageOption == 1){
                         
                         sentMessages.add(message.getMessage());
@@ -168,12 +167,12 @@ public class ChatApp {
                         message.storeMessage();
                         
                     }
-                    //message option 2, delete message, if chosen
+                    //message option 2, delete message
                     else if(messageOption == 2){
                         disregardedMessages.add(message.getMessage());
                         System.out.println("Message discarded");
                     }
-                    //message option 3, to store message, if chosen
+                    //message option 3, to store message
                     else if(messageOption == 3){
                         storedMessages.add(message.getMessage());
                         
@@ -186,7 +185,7 @@ public class ChatApp {
                 
                 System.out.println("\nTotal Messages Sent: " + Message.returnTotalMessages());    
             }
-            
+            //showing recently sent messages
             else if(option == 2){
                 if(sentMessages.isEmpty()){
                     
@@ -201,7 +200,8 @@ public class ChatApp {
                     }
                 } 
             }
-            
+            //PART 3
+            //for stored messages
             else if(option == 3){
                 System.out.println("===STORED MESSAGES MENU===");
                 System.out.println("1) Display sender and recipient");
@@ -214,14 +214,16 @@ public class ChatApp {
                 int storedOption = input.nextInt();
                 input.nextLine();
                 
-                //
+                //displaying sender and recipient
                 if(storedOption == 1){
                     for(int i = 0; i < recipients.size(); i++){
                         System.out.println("Sender: Developer");
                         System.out.println("Recipient: " + recipients.get(i));
                         System.out.println();
                     }
-                }else if(storedOption == 2){
+                }
+                //display longest message
+                else if(storedOption == 2){
                     String longestMessage = "";
                     
                     for(String msg : sentMessages){
@@ -232,7 +234,9 @@ public class ChatApp {
                     
                     System.out.println("LongestMessage: ");
                     System.out.println(longestMessage);
-                }else if(storedOption == 3){
+                }
+                //searching message id
+                else if(storedOption == 3){
                     System.out.println("Enter Message ID: ");
                     String searchID = input.nextLine();
                     
@@ -249,8 +253,10 @@ public class ChatApp {
                     if(!found){
                         System.out.println("Message ID not found");
                     }
-                }else if(storedOption == 4){
-                    System.out.println("Enter Recipients Number: ");
+                }
+                //search by recipients number
+                else if(storedOption == 4){
+                    System.out.println("Enter Recipient's Number: ");
                     String searchRecipient = input.nextLine();
                     
                     boolean found = false;
@@ -265,7 +271,9 @@ public class ChatApp {
                     if(!found){
                         System.out.println("No Messages Found");
                     }
-                }else if(storedOption == 5){
+                }
+                //message hash deleting
+                else if(storedOption == 5){
                     System.out.println("Enter Message Hash: ");
                     String hash = input.nextLine();
                     
@@ -286,7 +294,9 @@ public class ChatApp {
                     if(!deleted){
                         System.out.println("Message Hash not found");
                     }
-                }else if(storedOption == 6){
+                }
+                //displays report
+                else if(storedOption == 6){
                     System.out.println("\n===MESSAGE REPORT===");
                     
                     for(int i = 0; i < sentMessages.size(); i++){

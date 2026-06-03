@@ -34,7 +34,5 @@ class Login {
     //has stored all the users input
     public static boolean loginUser(String storedUser, String storedPass, String loginUser, String loginPass){
         return loginUser.equals(storedUser) && loginPass.equals(storedPass);
-    }
-    
-    
-    }
+    } 
+}
