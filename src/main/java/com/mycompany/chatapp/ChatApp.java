@@ -34,7 +34,11 @@ public class ChatApp {
         
         Login Login = new Login();
         ArrayList<String>sentMessages = new ArrayList<>();
+        ArrayList<String>disregardedMessages = new ArrayList<>();
+        ArrayList<String>storedMessages = new ArrayList<>();
         ArrayList<String>messageHashes = new ArrayList<>();
+        ArrayList<String>messageIDs = new ArrayList<>();
+        ArrayList<String>recipients = new ArrayList<>();
         
         System.out.println("======REGISTER======");
         //user input
@@ -79,7 +83,9 @@ public class ChatApp {
                     + "does not contain international code");
         }
         
-        //Login class method??
+        
+        //PART 2
+        //Login
         System.out.println("======LOGIN======");
         System.out.println("Enter your username: ");
         loginUser = input.nextLine();
@@ -102,7 +108,8 @@ public class ChatApp {
             System.out.println("Choose an option: ");
             System.out.println("1) Send Messages");
             System.out.println("2) Show Recently Sent Messages");
-            System.out.println("3) Quit");
+            System.out.println("3) Stored Messages");
+            System.out.println("4) Quit");
             
             System.out.println("Option: ");
             option = input.nextInt();
@@ -145,13 +152,17 @@ public class ChatApp {
                     
                     //message option 1, if chosen
                     if(messageOption == 1){
+                        
+                        sentMessages.add(message.getMessage());
+                        messageHashes.add(message.getMessageHash());
+                        messageIDs.add(message.getMessageID());
+                        recipients.add(message.getRecipient());
+                        
                         //displays sent message
                         System.out.println(message.sentMessage());
                         
                         //prints message details
                         System.out.println(message.printMessage());
-                        sentMessages.add(message.printMessage());
-                        messageHashes.add(message.createMessageHash());
                         
                         //saves message to JSON file
                         message.storeMessage();
@@ -159,17 +170,16 @@ public class ChatApp {
                     }
                     //message option 2, delete message, if chosen
                     else if(messageOption == 2){
-                        
-                        System.out.println("Press 0 to delete message");
-                        delete = input.nextInt();
-                        input.nextLine();
-                        
-                        if(delete == 0){
-                            System.out.println("Message deleted");
-                        }
+                        disregardedMessages.add(message.getMessage());
+                        System.out.println("Message discarded");
                     }
                     //message option 3, to store message, if chosen
                     else if(messageOption == 3){
+                        storedMessages.add(message.getMessage());
+                        
+                        messageHashes.add(message.getMessageHash());
+                        messageIDs.add(message.getMessageID());
+                        recipients.add(message.getRecipient());
                         message.storeMessage();
                     }  
                 }
@@ -193,7 +203,99 @@ public class ChatApp {
             }
             
             else if(option == 3){
-                System.out.println("Goodbye");
+                System.out.println("===STORED MESSAGES MENU===");
+                System.out.println("1) Display sender and recipient");
+                System.out.println("2) Display longest message");
+                System.out.println("3) Search by Message ID");
+                System.out.println("4) Search by recipient");
+                System.out.println("5) Delete by message hash");
+                System.out.println("6) Display report");
+                System.out.println("Choice: ");
+                int storedOption = input.nextInt();
+                input.nextLine();
+                
+                //
+                if(storedOption == 1){
+                    for(int i = 0; i < recipients.size(); i++){
+                        System.out.println("Sender: Developer");
+                        System.out.println("Recipient: " + recipients.get(i));
+                        System.out.println();
+                    }
+                }else if(storedOption == 2){
+                    String longestMessage = "";
+                    
+                    for(String msg : sentMessages){
+                        if(msg.length()> longestMessage.length()){
+                            longestMessage = msg;
+                        }
+                    }
+                    
+                    System.out.println("LongestMessage: ");
+                    System.out.println(longestMessage);
+                }else if(storedOption == 3){
+                    System.out.println("Enter Message ID: ");
+                    String searchID = input.nextLine();
+                    
+                    boolean found = false;
+                    for(int i = 0; i < messageIDs.size(); i++){
+                        if(messageIDs.get(i).equals(searchID)){
+                            System.out.println("Recipient: " + recipients.get(i));
+                            System.out.println("Messages: " + sentMessages.get(i));
+                            found = true;
+                            
+                        }
+                    }
+                    
+                    if(!found){
+                        System.out.println("Message ID not found");
+                    }
+                }else if(storedOption == 4){
+                    System.out.println("Enter Recipients Number: ");
+                    String searchRecipient = input.nextLine();
+                    
+                    boolean found = false;
+                    
+                    for(int i = 0; i < recipients.size(); i++){
+                        if(recipients.get(i).equals(searchRecipient)){
+                            System.out.println(sentMessages.get(i));
+                            found = true;
+                        }
+                    }
+                    
+                    if(!found){
+                        System.out.println("No Messages Found");
+                    }
+                }else if(storedOption == 5){
+                    System.out.println("Enter Message Hash: ");
+                    String hash = input.nextLine();
+                    
+                    boolean deleted = false;
+                    
+                    for(int i = 0; i < messageHashes.size(); i++){
+                        if(messageHashes.get(i).equals(hash)){
+                            System.out.println("Message: " + sentMessages.get(i) + " successfully deleted");
+                            
+                            sentMessages.remove(i);
+                            recipients.remove(i);
+                            messageHashes.remove(i);
+                            messageIDs.remove(i);
+                            deleted = true;
+                        }
+                    }
+                    
+                    if(!deleted){
+                        System.out.println("Message Hash not found");
+                    }
+                }else if(storedOption == 6){
+                    System.out.println("\n===MESSAGE REPORT===");
+                    
+                    for(int i = 0; i < sentMessages.size(); i++){
+                        System.out.println("Message Hash: " + messageHashes.get(i));
+                        System.out.println("Recipient: " + recipients.get(i));
+                        System.out.println("Message: " + sentMessages.get(i));
+                        System.out.println("------------------");
+                    }
+                }
             }
             
             else{

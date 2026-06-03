@@ -110,5 +110,22 @@ class Message {
            System.out.println("Error storing message");
        }
    }
-      
+   
+   //getters
+   public String getMessage(){
+       return message;      
+   }
+   
+   public String getRecipient(){
+       return recipient;
+   }
+   
+   public String getMessageHash(){
+       return messageHash;
+   }
+   
+   public String getMessageID(){
+       return messageID;
+   }
+   
 }
